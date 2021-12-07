@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+  
+  <script type="text/javascript" src="https://pay.conekta.com/v1.0/js/conekta-checkout.min.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <script type="text/javascript" src="https://pay.conekta.com/v1.0/js/conekta-checkout.min.js"></script>
+    
+    <title>Carrito Compras en JavaScript</title>
+
+</head>
+
+
+    <link rel="stylesheet" href="./css/css-style.css">
+    
+
+
+
+
+  
+<body class="modal-open">  
+
+ 
+
+ 
+
+
+
+
+  
+    <!-- HEDER 1 -->
+
+    <header class="page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-default-sidebar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-sidebar" data-lg-device-layout="rd-navbar-sidebar" data-md-stick-up-offset="40px" data-lg-stick-up-offset="40px" data-stick-up="true" data-sm-stick-up="true" data-md-stick-up="true" data-lg-stick-up="true">
+            <div class="rd-navbar-inner">
+              <!-- RD Navbar Panel-->
+              <div class="rd-navbar-panel">
+                <!-- RD Navbar Brand-->
+                <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img style="height: 50px;
+                  width: 226px;" src="./images/logo.png" alt="" width="102" height="52"></a></div>
+                <div class="rd-navbar-collapse-toggle" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
+                <div class="rd-navbar-top-panel rd-navbar-collapse">
+                  <div class="rd-navbar-top-panel-inner">
+                    <address class="contact-info">
+                      <ul class="group-lg">
+                      
+                        <li>
+                          <div class="unit unit-middle unit-horizontal unit-spacing-xs unit-xs-top">
+                          </div>
+                        </li>
+                        <li>
+                           <!-- COMPRAS -->
+        
+
+                          <!--  Botton DROPDAWN -->
+                            <div class="collapse navbar-collapse" id="navbarCollapse"  style="background-color: cornsilk;">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item dropdown">
+                                       
+                                              <span  class=" my-cart-icon"   style="background-color: #eeca66; "><svg   id="Layer_1"  >0</svg></span>
+                                              
+                                    </li>
+                                </ul>
+                            </div>
+                        
+                        </li>
+                      </ul>
+                    </address>
+                         
+
+
+
+                          
+                        
+                    
+                  </div> 
+                </div>
+                <!-- RD Navbar Toggle-->
+                <button class="rd-navbar-sidebar-toggle-custom"><span></span><b>menu </b></button>
+              </div>
+            </div>
+            <div class="rd-navbar-aside-right">
+              <div class="rd-navbar-nav-wrap"> 
+                <!-- RD Navbar Nav-->
+                <ul class="rd-navbar-nav">
+                  <li class="active"><a href="index.html">Inicio</a></li>
+                  <li><a href="bodas.html">Bodas</a></li>
+                  <li><a href="#servicios">Servicios</a>
+                    <!-- RD Navbar Megamenu-->
+                    <ul class="rd-navbar-megamenu">
+                      <li>
+                        <ul class="rd-megamenu-list">
+                          <li><a href="#servicios">Maquillage</a></li>
+                          <li><a href="#servicios">Peinado</a></li>
+                          <li><a href="#servicios">Maquillage y Peinado</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul class="rd-megamenu-list">
+                          <li><a href="#servicios">XV AÑOS</a></li>
+                              <li><a href="#servicios">Novias</a></li>
+                          
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="unete.html">Unete al equipo</a>
+                    <!-- RD Navbar Dropdown-->
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+    <!-- HEDER 2 -->
+   
+   
+       
+            
+            
+            
+       
+   
+
+    <br>
+
+    <main>
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col">
+                    
+                    <form id="procesar-pago" action="#" method="post">
+                     
+                       
+                     
+
+                     
+
+                        
+                        <div id="idCartModal" class="form-group table-responsive" >
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Sub Total</th>
+                                        <th scope="col">Eliminar</th>
+                                    </tr>
+
+                                </thead>
+                                </table>
+                                </div>
+
+
+
+                        <div id="idCartModal" class="form-group table-responsive" >
+                            <table class="table" id="my-cart-table">
+
+                                <tbody >
+                                                                    
+                                </tbody>
+
+                            </table>
+                            
+                        </div>
+
+                        <div id="conektaIframeContainer" style="height: 1350px;"></div>
+  <script type="text/javascript">
+    window.ConektaCheckoutComponents.Card({
+      targetIFrame: "#conektaIframeContainer",
+//Este componente "allowTokenization" permite personalizar el tokenizador, por lo que su valor siempre será TRUE
+      allowTokenization: true, 
+      checkoutRequestId: "8132d8a3-5919-4b88-a5e9-7be905f69134", // // Checkout request ID, es el mismo ID generado en el paso 1
+      publicKey: "Key_LlavePUBLICA123456789", // Llaves: https://developers.conekta.com/docs/como-obtener-tus-api-keys
+      options: {
+        styles: {
+// inputType modifica el diseño del Web Checkout Tokenizer
+//        inputType: 'basic' // 'basic' | 'rounded' | 'line'
+          inputType: 'rounded',
+// buttonType modifica el diseño de los campos de llenado de información del  Web Checkout Tokenizer
+//        buttonType: 'basic' // 'basic' | 'rounded' | 'sharp'
+          buttonType: 'rounded',
+//Elemento que personaliza el borde de color de los elementos            
+          states: {
+            empty: {
+              borderColor: '#FFAA00' // Código de color hexadecimal para campos vacíos
+            },
+            invalid: {
+              borderColor: '#FF00E0' // Código de color hexadecimal para campos inválidos
+            },
+            valid: {
+              borderColor: '#0079c1' // Código de color hexadecimal para campos llenos y válidos
+            }
+          }
+        },
+        languaje: 'es', // 'es' Español | 'en' Ingles
+//Elemento que personaliza el botón que finzaliza el guardado y tokenización de la tarjeta
+        button: {
+          colorText: '#ffffff', // Código de color hexadecimal para el color de las palabrás en el botón de: Alta de Tarjeta | Add Card
+          //text: 'Agregar Tarjeta***', //Nombre de la acción en el botón ***Se puede personalizar
+          backgroundColor: '#301007' // Código de color hexadecimal para el color del botón de: Alta de Tarjeta | Add Card
+        },
+//Elemento que personaliza el diseño del iframe
+        iframe: {
+          colorText: '#65A39B',  // Código de color hexadecimal para el color de la letra de todos los campos a llenar
+          backgroundColor: '#FFFFFF' // Código de color hexadecimal para el fondo del iframe, generalmente es blanco.
+        }
+      },
+      onCreateTokenSucceeded: function(token) {
+        console.log(token)
+      },
+      onCreateTokenError: function(error) {
+        console.log(error)
+      }
+    })
+  </script>
+
+                        
+                        
+                       
+                   
+                      </form>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </main>
+
+
+
+
+
+    </div>
+
+    <pre id="arrPrint"></pre>
+
+
+    <!-- <script>
+      console.log("entro!! ");
+      Conekta.setPublickey("key_bU2Tzy1rBycxbpc4GnaVKJQ");
+         var conectaSuccessResponseHandler= function(token){
+          
+
+          $("#conektaTokenId").val(token.id);
+         };
+console.log("entro1");
+         var conektaErrorResponseHandler = function(response){
+          var $form=$("#procesar-pago");
+
+          alert(response.message_to_purchaser);
+         };
+  
+         $(document).ready(function(){
+
+            $("#procesar-pago").submit(function(e){
+              e.preventDefault();
+
+              var $form= $("#procesar-pago");
+
+              Conekta.Token.create($form,conectaSuccessResponseHandler,conektaErrorResponseHandler);
+            })
+         })
+
+
+  </script> -->
+
+</body>
+
+
+    <script src="./js/core.min.js"></script>
+    <script src="./js/script.js"></script>
+   
+ <script src="./js/jquery.mycart.js"></script>
+ <script src="./js/cart.js"></script>
+
+
+
+
+<script>
+  
+  window.onload =function () {
+      $('#Layer_1').click();
+};
+    
+</script>
+
+
+
+
+</html>
